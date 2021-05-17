@@ -4,11 +4,13 @@ require('dotenv').config();
 const PORT = process.env.LOCAL_PORT;
 let cors = require('cors');
 let userRoutes = require('./routes/userRoutes');
+let momentRoutes = require('./routes/momentRoutes');
 let { NotFound, InternalServerError } = require('./middleware/httpStatusCode.json');
 
 app.use(cors());
 app.use(express.json());
 app.use('/user', userRoutes);
+app.use('/moment', momentRoutes);
 
 app.use((req, res, next) => {
     const response = {};
