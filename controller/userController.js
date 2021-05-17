@@ -33,6 +33,24 @@ class UserController {
         }
     }
 
+    userSignInController = (req, res, next) => {
+        try {
+            let data = {
+                "email": req.body.email,
+                "password": req.body.password
+            }
+            userService.userSignInService(data, (error, data) => {
+                if (error) {
+                    this.userControllerResponse(res, error);
+                } else {
+                    this.userControllerResponse(res, data);
+                }
+            })
+        } catch (error) {
+            next(error)
+        }
+    }
+
 }
 
 module.exports = new UserController();
