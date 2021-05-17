@@ -32,6 +32,16 @@ class MomentModel {
         })
     }
 
+    readMoment = (obj, callback) => {
+        moments.find(obj, (error, data) => {
+            if (error) {
+                callback(error);
+            } else {
+                callback(null, data);
+            }
+        })
+    }
+
 }
 
 module.exports = new MomentModel();

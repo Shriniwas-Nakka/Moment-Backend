@@ -13,6 +13,19 @@ class MomentService {
         })
     }
 
+    momentReadService = (callback) => {
+        let obj = {};
+        momentModel.readMoment(obj, (error, data) => {
+            if (error) {
+                callback({ flag: false, message: "Something went wrong !", error: error, code: InternalServerError });
+            } else if (data.length == 0) {
+                callback({ flag: false, message: "No moments found !", code: NotFound });
+            } else {
+                callback(null, { flag: true, message: "Moments Found !", data: data, code: OK });
+            }
+        })
+    }
+
 }
 
 module.exports = new MomentService();

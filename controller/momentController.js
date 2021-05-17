@@ -30,6 +30,20 @@ class UserController {
         }
     }
 
+    momentReadController = (req, res, next) => {
+        try {
+            momentService.momentReadService((error, data) => {
+                if (error) {
+                    this.momentControllerResponse(res, error);
+                } else {
+                    this.momentControllerResponse(res, data);
+                }
+            })
+        } catch (error) {
+            next(error)
+        }
+    }
+
 }
 
 module.exports = new UserController();
